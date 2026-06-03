@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>New Hope Assisted Living LLC</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sage: #7A9E7E;
+      --sage-light: #A8C5AC;
+      --sage-dark: #4F7554;
+      --cream: #FAF7F2;
+      --warm-white: #FFFDF9;
+      --charcoal: #2C2C2C;
+      --muted: #6B6B6B;
+      --gold: #C9A96E;
+      --blush: #E8D5C4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--charcoal);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 3rem;
+      background: rgba(250,247,242,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(122,158,126,0.18);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--sage-dark);
+      letter-spacing: 0.03em;
+      line-height: 1.2;
+    }
+    .nav-logo span { display: block; font-size: 0.72rem; font-weight: 300; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; font-family: 'DM Sans', sans-serif; }
+
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--charcoal); font-size: 0.88rem; font-weight: 400; letter-spacing: 0.04em; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--sage-dark); }
+
+    .nav-cta {
+      background: var(--sage-dark);
+      color: #fff !important;
+      padding: 0.55rem 1.4rem;
+      border-radius: 2rem;
+      font-size: 0.84rem !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--sage) !important; color: #fff !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 80px;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 3rem 5rem 5rem;
+      position: relative;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(122,158,126,0.12);
+      border: 1px solid rgba(122,158,126,0.3);
+      color: var(--sage-dark);
+      padding: 0.4rem 1rem;
+      border-radius: 2rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: 2rem;
+      width: fit-content;
+      animation: fadeUp 0.8s ease both;
+    }
+    .hero-badge::before { content: '✦'; font-size: 0.6rem; }
+
+    .hero-h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 5vw, 4.5rem);
+      font-weight: 300;
+      line-height: 1.12;
+      color: var(--charcoal);
+      margin-bottom: 1.6rem;
+      animation: fadeUp 0.8s 0.1s ease both;
+    }
+    .hero-h1 em { font-style: italic; color: var(--sage-dark); }
+
+    .hero-p {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 420px;
+      margin-bottom: 2.8rem;
+      font-weight: 300;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+
+    .btn-primary {
+      background: var(--sage-dark);
+      color: #fff;
+      padding: 0.9rem 2.2rem;
+      border-radius: 3rem;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      transition: background 0.25s, transform 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover { background: var(--sage); transform: translateY(-2px); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--charcoal);
+      padding: 0.9rem 2.2rem;
+      border-radius: 3rem;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 400;
+      border: 1.5px solid rgba(44,44,44,0.25);
+      transition: border-color 0.25s, color 0.25s, transform 0.2s;
+      cursor: pointer;
+    }
+    .btn-outline:hover { border-color: var(--sage-dark); color: var(--sage-dark); transform: translateY(-2px); }
+
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+      background: var(--blush);
+      animation: fadeIn 1s 0.1s ease both;
+    }
+
+    .hero-img-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(145deg, #d4e6d6 0%, #c5d8c8 30%, #b8d4bc 60%, #e8d5c4 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Decorative illustration inside hero */
+    .hero-illustration {
+      position: relative;
+      width: 380px;
+      height: 380px;
+    }
+    .circle-lg {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.35);
+    }
+    .c1 { width: 320px; height: 320px; top: 30px; left: 30px; }
+    .c2 { width: 200px; height: 200px; top: 90px; left: 90px; background: rgba(255,255,255,0.45); }
+    .c3 { width: 100px; height: 100px; top: 140px; left: 140px; background: rgba(255,255,255,0.6); }
+
+    .hero-icon {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      font-size: 5rem;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.08));
+    }
+
+    .hero-float-card {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff;
+      border-radius: 1rem;
+      padding: 1rem 1.5rem;
+      display: flex;
+      gap: 1.8rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+      white-space: nowrap;
+    }
+    .float-stat { text-align: center; }
+    .float-stat strong { display: block; font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 600; color: var(--sage-dark); }
+    .float-stat span { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.05em; text-transform: uppercase; }
+
+    .hero-leaf {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      font-size: 2.5rem;
+      opacity: 0.4;
+      animation: sway 4s ease-in-out infinite;
+    }
+
+    /* ── ABOUT STRIP ── */
+    .about-strip {
+      background: var(--sage-dark);
+      color: #fff;
+      padding: 2.2rem 5rem;
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+    .strip-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 300;
+      font-style: italic;
+      flex: 1;
+      min-width: 280px;
+    }
+    .strip-divider { width: 1px; height: 40px; background: rgba(255,255,255,0.25); }
+    .strip-item { text-align: center; }
+    .strip-item strong { display: block; font-size: 1.5rem; font-family: 'Cormorant Garamond', serif; }
+    .strip-item span { font-size: 0.75rem; opacity: 0.75; text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* ── SERVICES ── */
+    .section {
+      padding: 6rem 5rem;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--sage-dark);
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--charcoal);
+      margin-bottom: 1rem;
+    }
+    .section-title em { font-style: italic; color: var(--sage-dark); }
+
+    .section-sub {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      max-width: 540px;
+      font-weight: 300;
+      margin-bottom: 3.5rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--warm-white);
+      border: 1px solid rgba(122,158,126,0.15);
+      border-radius: 1.2rem;
+      padding: 2rem;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px; height: 100%;
+      background: var(--sage);
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform 0.3s;
+    }
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,0.08); border-color: rgba(122,158,126,0.4); }
+    .service-card:hover::before { transform: scaleY(1); }
+
+    .service-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .service-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; color: var(--charcoal); margin-bottom: 0.6rem; }
+    .service-desc { font-size: 0.87rem; color: var(--muted); line-height: 1.75; font-weight: 300; }
+
+    /* ── WHY US ── */
+    .why-section {
+      padding: 6rem 5rem;
+      background: var(--warm-white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .why-visual {
+      position: relative;
+      height: 450px;
+    }
+    .why-bg-card {
+      position: absolute;
+      border-radius: 1.5rem;
+      background: linear-gradient(135deg, #d4e6d6, #b8d4bc);
+      width: 300px; height: 380px;
+      top: 0; left: 0;
+    }
+    .why-front-card {
+      position: absolute;
+      right: 0; bottom: 0;
+      background: #fff;
+      border-radius: 1.5rem;
+      padding: 2rem;
+      width: 280px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.10);
+    }
+    .why-front-card h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--charcoal); margin-bottom: 1rem; }
+    .check-item { display: flex; gap: 0.6rem; align-items: flex-start; margin-bottom: 0.7rem; font-size: 0.84rem; color: var(--muted); }
+    .check-item::before { content: '✓'; color: var(--sage-dark); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .why-leaf-deco {
+      position: absolute;
+      top: 40%; right: 50%;
+      transform: translate(50%,-50%);
+      font-size: 4rem;
+      opacity: 0.18;
+    }
+
+    .why-content {}
+    .values-list { list-style: none; display: flex; flex-direction: column; gap: 1.4rem; }
+    .value-item { display: flex; gap: 1rem; align-items: flex-start; }
+    .value-num {
+      flex-shrink: 0;
+      width: 2.2rem; height: 2.2rem;
+      border-radius: 50%;
+      background: rgba(122,158,126,0.12);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem;
+      color: var(--sage-dark);
+      font-weight: 600;
+    }
+    .value-text strong { display: block; font-size: 0.9rem; font-weight: 500; color: var(--charcoal); margin-bottom: 0.2rem; }
+    .value-text span { font-size: 0.83rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── TESTIMONIAL ── */
+    .testimonial-section {
+      padding: 6rem 5rem;
+      background: var(--sage-dark);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .testimonial-section::before {
+      content: '"';
+      position: absolute;
+      top: -1rem;
+      left: 3rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20rem;
+      color: rgba(255,255,255,0.05);
+      line-height: 1;
+    }
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .testimonial-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 1.2rem;
+      padding: 2rem;
+      position: relative;
+    }
+    .t-quote { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-style: italic; line-height: 1.7; margin-bottom: 1.5rem; font-weight: 300; opacity: 0.95; }
+    .t-author { font-size: 0.82rem; font-weight: 500; opacity: 0.65; letter-spacing: 0.05em; text-transform: uppercase; }
+    .t-stars { color: var(--gold); font-size: 0.75rem; margin-bottom: 0.75rem; letter-spacing: 0.1em; }
+
+    /* ── CONTACT ── */
+    .contact-section {
+      padding: 6rem 5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .contact-info h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; font-weight: 300; margin-bottom: 1rem; }
+    .contact-info h2 em { font-style: italic; color: var(--sage-dark); }
+    .contact-info p { color: var(--muted); font-size: 0.9rem; line-height: 1.8; margin-bottom: 2rem; font-weight: 300; }
+    .contact-detail { display: flex; gap: 0.8rem; align-items: center; margin-bottom: 1rem; font-size: 0.9rem; color: var(--charcoal); }
+    .contact-detail span:first-child { font-size: 1.1rem; }
+
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-group label { font-size: 0.78rem; color: var(--muted); font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; }
+    .form-group input, .form-group textarea, .form-group select {
+      padding: 0.75rem 1rem;
+      border: 1.5px solid rgba(122,158,126,0.2);
+      border-radius: 0.6rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      background: var(--warm-white);
+      color: var(--charcoal);
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--sage); }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-submit { background: var(--sage-dark); color: #fff; border: none; padding: 1rem 2.5rem; border-radius: 3rem; font-size: 0.9rem; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.2s, transform 0.2s; letter-spacing: 0.03em; }
+    .form-submit:hover { background: var(--sage); transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--charcoal);
+      color: rgba(255,255,255,0.7);
+      padding: 3rem 5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: #fff; font-weight: 400; }
+    .footer-copy { font-size: 0.8rem; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--sage-light); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes sway {
+      0%, 100% { transform: rotate(-6deg); }
+      50%       { transform: rotate(6deg); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { min-height: 340px; }
+      .hero-left { padding: 3rem 2rem; }
+      .about-strip { padding: 2rem; }
+      .section { padding: 4rem 2rem; }
+      .why-section { grid-template-columns: 1fr; padding: 4rem 2rem; }
+      .why-visual { height: 260px; }
+      .contact-section { grid-template-columns: 1fr; padding: 4rem 2rem; }
+      .form-row { grid-template-columns: 1fr; }
+      footer { padding: 2.5rem 2rem; }
+      .testimonial-section { padding: 4rem 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    New Hope Assisted Living
+    <span>LLC · Compassionate Senior Care</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">Trusted Assisted Living Care</div>
+    <h1 class="hero-h1">
+      A place where<br/>
+      <em>hope &amp; comfort</em><br/>
+      meet every day.
+    </h1>
+    <p class="hero-p">
+      At New Hope Assisted Living LLC, we provide warm, personalized care that honors the dignity and independence of every resident — because every life deserves to flourish.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Schedule a Tour</a>
+      <a href="#services" class="btn-outline">Our Services</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img-placeholder">
+      <div class="hero-leaf">🌿</div>
+      <div class="hero-illustration">
+        <div class="circle-lg c1"></div>
+        <div class="circle-lg c2"></div>
+        <div class="circle-lg c3"></div>
+        <div class="hero-icon">🏡</div>
+      </div>
+      <div class="hero-float-card">
+        <div class="float-stat"><strong>24/7</strong><span>On-Site Care</span></div>
+        <div class="float-stat"><strong>100%</strong><span>Compassion</span></div>
+        <div class="float-stat"><strong>★ 5.0</strong><span>Family Trust</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT STRIP -->
+<div class="about-strip">
+  <p class="strip-text">"Every resident deserves to feel at home — safe, loved, and valued."</p>
+  <div class="strip-divider"></div>
+  <div class="strip-item"><strong>Licensed</strong><span>Facility</span></div>
+  <div class="strip-divider"></div>
+  <div class="strip-item"><strong>Trained</strong><span>Caregivers</span></div>
+  <div class="strip-divider"></div>
+  <div class="strip-item"><strong>Family</strong><span>Centered</span></div>
+</div>
+
+<!-- SERVICES -->
+<section id="services" class="section">
+  <p class="section-label">What We Offer</p>
+  <h2 class="section-title">Comprehensive care<br/><em>tailored to each individual</em></h2>
+  <p class="section-sub">We offer a full range of services designed to support daily living with warmth, safety, and respect for each resident's unique needs.</p>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🛏️</div>
+      <h3 class="service-title">Residential Living</h3>
+      <p class="service-desc">Comfortable, home-like rooms with personalized furnishing options and a peaceful, supportive environment residents are proud to call home.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🍽️</div>
+      <h3 class="service-title">Nutrition & Meals</h3>
+      <p class="service-desc">Nutritious, home-cooked meals prepared with care — accommodating dietary needs, cultural preferences, and personal favorites.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💊</div>
+      <h3 class="service-title">Medication Management</h3>
+      <p class="service-desc">Reliable, organized medication support by trained staff to ensure residents stay on schedule safely and consistently.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🤝</div>
+      <h3 class="service-title">Personal Care Assistance</h3>
+      <p class="service-desc">Dignified help with bathing, grooming, dressing, and mobility — always delivered with the utmost respect and privacy.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🧩</div>
+      <h3 class="service-title">Activities & Engagement</h3>
+      <p class="service-desc">Enriching social activities, games, outings, and programs designed to keep residents active, engaged, and connected.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">👨‍👩‍👧</div>
+      <h3 class="service-title">Family Communication</h3>
+      <p class="service-desc">Open, ongoing communication with families to ensure peace of mind and meaningful involvement in their loved one's care.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="about" class="why-section">
+  <div class="why-visual">
+    <div class="why-bg-card"></div>
+    <div class="why-leaf-deco">🌿</div>
+    <div class="why-front-card">
+      <h4>Our Promise to Families</h4>
+      <div class="check-item">Transparent, honest communication at all times</div>
+      <div class="check-item">Person-centered care plans for every resident</div>
+      <div class="check-item">Staff trained in dementia and special needs care</div>
+      <div class="check-item">Clean, safe, and welcoming home environment</div>
+      <div class="check-item">Regular family updates and open-door visits</div>
+    </div>
+  </div>
+
+  <div class="why-content">
+    <p class="section-label">Why New Hope</p>
+    <h2 class="section-title">Care rooted in<br/><em>dignity &amp; belonging</em></h2>
+    <p class="section-sub">We believe that quality of life doesn't stop at a diagnosis or age. Our team is committed to seeing the whole person — their history, personality, and needs.</p>
+
+    <ul class="values-list">
+      <li class="value-item">
+        <div class="value-num">1</div>
+        <div class="value-text">
+          <strong>Individualized Attention</strong>
+          <span>Every care plan is built around the unique needs, preferences, and history of each resident — not a one-size-fits-all approach.</span>
+        </div>
+      </li>
+      <li class="value-item">
+        <div class="value-num">2</div>
+        <div class="value-text">
+          <strong>Experienced & Compassionate Staff</strong>
+          <span>Our caregivers bring both professional training and genuine heart to everything they do, every single day.</span>
+        </div>
+      </li>
+      <li class="value-item">
+        <div class="value-num">3</div>
+        <div class="value-text">
+          <strong>A True Home Environment</strong>
+          <span>Small, community-based living means residents receive the personal attention and warmth of a real home — not a facility.</span>
+        </div>
+      </li>
+      <li class="value-item">
+        <div class="value-num">4</div>
+        <div class="value-text">
+          <strong>Family-Centered Philosophy</strong>
+          <span>Families are partners in care. We keep you informed, involved, and at ease every step of the way.</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="testimonial-section">
+  <p class="section-label" style="color:rgba(255,255,255,0.6); margin-bottom: 0.5rem;">Families Say</p>
+  <h2 class="section-title" style="color:#fff; margin-bottom: 3rem;">Stories of <em style="color:var(--sage-light);">hope &amp; trust</em></h2>
+  <div class="testimonial-grid">
+    <div class="testimonial-card">
+      <div class="t-stars">★ ★ ★ ★ ★</div>
+      <p class="t-quote">"Moving my mother here was the best decision we made. She is happy, well-cared for, and the staff treats her like family. My heart is at peace knowing she is in good hands."</p>
+      <p class="t-author">— Maria T., Daughter of Resident</p>
+    </div>
+    <div class="testimonial-card">
+      <div class="t-stars">★ ★ ★ ★ ★</div>
+      <p class="t-quote">"The level of personal attention is remarkable. They know my father's routine, his favorite meals, even his jokes. This feels like a real home, not a facility."</p>
+      <p class="t-author">— James K., Son of Resident</p>
+    </div>
+    <div class="testimonial-card">
+      <div class="t-stars">★ ★ ★ ★ ★</div>
+      <p class="t-quote">"From our very first tour, we felt the warmth and genuine care. The staff truly goes above and beyond. We couldn't be more grateful for New Hope Assisted Living."</p>
+      <p class="t-author">— Linda R., Family Member</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="contact-info">
+    <p class="section-label">Contact Us</p>
+    <h2>Let's find the right<br/><em>fit for your family</em></h2>
+    <p>We'd love to talk with you about your loved one's needs and give you a personal tour of our home. Reach out — we're here to help.</p>
+
+    <div class="contact-detail"><span>📍</span><span>Minnesota, United States</span></div>
+    <div class="contact-detail"><span>📞</span><span>(612) 233-2434</span></div>
+    <div class="contact-detail"><span>✉️</span><span>Newhopeassistedlivingllc@gmail.com</span></div>
+    <div class="contact-detail"><span>🕐</span><span>Open 24 hours · 7 days a week</span></div>
+  </div>
+
+  <div>
+    <div class="contact-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="Jane Smith"/>
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="(612) 000-0000"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="jane@email.com"/>
+      </div>
+      <div class="form-group">
+        <label>How can we help?</label>
+        <select>
+          <option>I'd like to schedule a tour</option>
+          <option>I have questions about services</option>
+          <option>I'm looking for availability</option>
+          <option>General inquiry</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Tell us a little about your loved one and what you're looking for…"></textarea>
+      </div>
+      <button class="form-submit">Send Message →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">New Hope Assisted Living LLC</div>
+  <p class="footer-copy">© 2026 New Hope Assisted Living LLC. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
